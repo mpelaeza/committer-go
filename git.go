@@ -48,7 +48,6 @@ func getStagedFiles() ([]string, error) {
 func gitAdd(files []string){
 	var addCommant = "add " + strings.Join(files, " ")
 	var cmd = exec.Command("git", strings.Split(addCommant, " ")...)
-	cmd.Output()
 	var _, err = cmd.Output()
 	isError(err, "Error: Problemas al hacer el git Add")
 	// fmt.Println(string(stdout))
