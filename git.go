@@ -1,7 +1,6 @@
 package main
 
 import (
-	// "fmt"
 	"os/exec"
 	"strings"
 )
@@ -50,7 +49,8 @@ func gitAdd(files []string){
 	var addCommant = "add " + strings.Join(files, " ")
 	var cmd = exec.Command("git", strings.Split(addCommant, " ")...)
 	cmd.Output()
-	// var stdout, err = cmd.Output()
+	var _, err = cmd.Output()
+	isError(err, "Error: Problemas al hacer el git Add")
 	// fmt.Println(string(stdout))
 	// fmt.Println(err)
 	// fmt.Printf("Prompt failed1 %v\n", err.Error())
@@ -58,7 +58,8 @@ func gitAdd(files []string){
 
 func gitCommit(commit string){
 	var cmd = exec.Command("git", "commit", "-m", commit)
-	cmd.Output()
+	var _, err = cmd.Output()
+	isError(err, "Error: Problemas al hacer el git commit")
 	// var stdout, err = cmd.Output()
 	// fmt.Println(string(stdout))
 	// fmt.Printf("Prompt failed2 %v\n", err.Error())
